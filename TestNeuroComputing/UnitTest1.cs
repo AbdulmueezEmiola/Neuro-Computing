@@ -1,6 +1,7 @@
 using ClassLibrary1;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 namespace TestNeuroComputing
@@ -30,7 +31,7 @@ namespace TestNeuroComputing
                 vectors2[i] = new Vector3(rand.Next(50, 100), rand.Next(50, 100), rand.Next(50, 100));
             }
             GradientDescent gradient = new GradientDescent(vectors, vectors2);
-            var values = gradient.calculateGradientDescent(0.0001f, 0.000000000001, 1000000);
+            var values = gradient.calculateGradientDescent(0.0001f,1000000);
             Assert.IsNotNull(values);
         }
         [TestMethod]
@@ -38,13 +39,23 @@ namespace TestNeuroComputing
         {
             var values = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile1.txt");
             var values2 = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile2.txt");
+            var resultPath = @"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\Result.txt";
             RelateTwoArrays relateTwoArrays = new RelateTwoArrays();
             relateTwoArrays.RelateTwoTuples(values.ToList(), values2.ToList());
             GradientDescent gradientDescent = new GradientDescent(relateTwoArrays.firstVector.ToArray(), relateTwoArrays.secondVector.ToArray());
-            var variable = gradientDescent.calculateGradientDescent(0.0001f, 0.000000000001, 1000);
+            var variable = gradientDescent.calculateGradientDescent(0.0001f,10000);
             var points = values.Select(x => x.Item2).ToArray();
             var transformedPoints = TransformPoint.transformPoints(points, (float)variable.alpha, (float)variable.beta, (float)variable.gamma,
                 (float)variable.deltaX, (float)variable.deltaY,(float)variable.deltaZ);
+            using(StreamWriter writer = new StreamWriter(resultPath))
+            {
+                for (int i = 0; i < points.Length; i++)
+                {
+                    string value = (i + 1) + ". " + values.ElementAt(i).Item1 + " (" + transformedPoints.ElementAt(i).X + "; " + transformedPoints.ElementAt(i).Y + "; " +
+                            transformedPoints.ElementAt(i).Z + ")";
+                    writer.WriteLine(value);
+                }
+            }
         }
     }
 }

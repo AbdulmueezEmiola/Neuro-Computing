@@ -16,7 +16,7 @@ namespace ClassLibrary1
             PointsB = pointsB;
             functions = new Functions(pointsA, pointsB);
         }
-        public Variables calculateGradientDescent(double step, double epsilon, double count)
+        public Variables calculateGradientDescent(double step, double count)
         {
             Variables initial = new Variables()
             {
