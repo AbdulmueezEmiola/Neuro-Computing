@@ -34,15 +34,17 @@ namespace TestNeuroComputing
             Assert.IsNotNull(values);
         }
         [TestMethod]
-        public void TestFileRead()
+        public void MainFunctionToRun()
         {
             var values = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile1.txt");
             var values2 = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile2.txt");
             RelateTwoArrays relateTwoArrays = new RelateTwoArrays();
             relateTwoArrays.RelateTwoTuples(values.ToList(), values2.ToList());
             GradientDescent gradientDescent = new GradientDescent(relateTwoArrays.firstVector.ToArray(), relateTwoArrays.secondVector.ToArray());
-            var variable = gradientDescent.calculateGradientDescent(0.0001f, 0.000000000001, 1000000);
-            Assert.IsNotNull(values);
+            var variable = gradientDescent.calculateGradientDescent(0.0001f, 0.000000000001, 1000);
+            var points = values.Select(x => x.Item2).ToArray();
+            var transformedPoints = TransformPoint.transformPoints(points, (float)variable.alpha, (float)variable.beta, (float)variable.gamma,
+                (float)variable.deltaX, (float)variable.deltaY,(float)variable.deltaZ);
         }
     }
 }
