@@ -16,48 +16,31 @@ namespace ClassLibrary1
         }
         public void RelateTwoTuples(List<Tuple<string, Vector3>> tuple1, List<Tuple<string, Vector3>> tuple2)
         {
+            var tuple1Vector = tuple1.Select(x => x.Item2);
+            var tuple2Vector = tuple2.Select(x => x.Item2);
             for(int i = 0; i < tuple1.Count; i++)
             {
-                var value = tuple2.Where(x => x != null).FirstOrDefault(x => x.Item1 == tuple1[i].Item1);
-                if (value!=default)
-                {
-                    firstVector.Add(tuple1[i].Item2);
-                    secondVector.Add(value.Item2);
-                    tuple1[i] = null;
-                    tuple2[tuple2.IndexOf(value)] = null;
-                }
+                var value = GetCorrespondingPoints(tuple1Vector.ElementAt(i), tuple2Vector);
+                firstVector.Add(tuple1Vector.ElementAt(i));
+                secondVector.Add(value);                
             }
-            int count = firstVector.Count;
+            //int count = firstVector.Count;
             //interpolateLagrangeMany(tuple1.Where(x => x != null).Select(x=>x.Item2).ToList(), firstVector, secondVector,count);
             //interpolateLagrangeMany(tuple2.Where(x => x != null).Select(x => x.Item2).ToList(), secondVector, firstVector, count);
         }
-        private void interpolateLagrangeMany(List<Vector3> vectorMain, List<Vector3> vectors, List<Vector3> vectors2, int initialCount)
+        private Vector3 GetCorrespondingPoints(Vector3 vector, IEnumerable<Vector3> vectors)
         {
-            foreach(Vector3 vector in vectorMain)
+            double minimumDistance =Vector3.Distance(vector,vectors.ElementAt(0));
+            Vector3 returnValue = vectors.ElementAt(0);
+            foreach (Vector3 vector2 in vectors)
             {
-                interpolateLagrange(vector, vectors, vectors2, initialCount);
-            }
-        }
-        private float interpolate(float x, float[]X, float[] y, int count)
-        {
-            float sum = 0;
-            for(int i = 0; i < count; i++)
-            {                
-                float product = 1;
-                for(int j = 0; j < count; j++)
+                double temp = Vector3.Distance(vector, vector2);
+                if(temp < minimumDistance)
                 {
-                    if(j != i)
-                    {
-                        product *= (x - X[j]) / (X[i] - X[j]);
-                    }
+                    returnValue = vector2;
                 }
-                sum += product * y[i];
             }
-            return sum;
-        }
-        private void interpolateLagrange(Vector3 vector, List<Vector3> vectors, List<Vector3>vectors2, int initialCount)
-        {
-            float X = interpolate(vector.X, vectors.Select(x => x.X).ToArray(), vectors2.Select(x => x.X).ToArray(), initialCount);
+            return returnValue;
         }
     }
 }

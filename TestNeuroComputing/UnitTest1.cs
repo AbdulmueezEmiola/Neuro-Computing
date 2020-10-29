@@ -31,8 +31,8 @@ namespace TestNeuroComputing
                 vectors2[i] = new Vector3(rand.Next(50, 100), rand.Next(50, 100), rand.Next(50, 100));
             }
             GradientDescent gradient = new GradientDescent(vectors, vectors2);
-            var values = gradient.calculateGradientDescent(0.0001f,1000000);
-            Assert.IsNotNull(values);
+            //var values = gradient.calculateGradientDescent(0.0001f,1000000);
+            //Assert.IsNotNull(values);
         }
         [TestMethod]
         public void MainFunctionToRun()
@@ -43,16 +43,15 @@ namespace TestNeuroComputing
             RelateTwoArrays relateTwoArrays = new RelateTwoArrays();
             relateTwoArrays.RelateTwoTuples(values.ToList(), values2.ToList());
             GradientDescent gradientDescent = new GradientDescent(relateTwoArrays.firstVector.ToArray(), relateTwoArrays.secondVector.ToArray());
-            var variable = gradientDescent.calculateGradientDescent(0.0001f,10000);
-            var points = values.Select(x => x.Item2).ToArray();
-            var transformedPoints = TransformPoint.transformPoints(points, (float)variable.alpha, (float)variable.beta, (float)variable.gamma,
-                (float)variable.deltaX, (float)variable.deltaY,(float)variable.deltaZ);
+            gradientDescent.calculateGradientDescent(0.0001f,350);
+            var result = gradientDescent.result;
             using(StreamWriter writer = new StreamWriter(resultPath))
             {
-                for (int i = 0; i < points.Length; i++)
+                for (int i = 0; i < result.Count; i++)
                 {
-                    string value = (i + 1) + ". " + values.ElementAt(i).Item1 + " (" + transformedPoints.ElementAt(i).X + "; " + transformedPoints.ElementAt(i).Y + "; " +
-                            transformedPoints.ElementAt(i).Z + ")";
+                    string value = (i + 1) + ". " + result.ElementAt(i).Item1 + " (" + result.ElementAt(i).Item2.alpha + "; " + result.ElementAt(i).Item2.beta + "; " +
+                            result.ElementAt(i).Item2.gamma + "; " + result.ElementAt(i).Item2.deltaX+ "; " 
+                            + result.ElementAt(i).Item2.deltaY + "; " + result.ElementAt(i).Item2.deltaZ +")";
                     writer.WriteLine(value);
                 }
             }
