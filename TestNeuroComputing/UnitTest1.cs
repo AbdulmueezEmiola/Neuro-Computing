@@ -43,7 +43,7 @@ namespace TestNeuroComputing
             RelateTwoArrays relateTwoArrays = new RelateTwoArrays();
             relateTwoArrays.RelateTwoTuples(values.ToList(), values2.ToList());
             GradientDescent gradientDescent = new GradientDescent(relateTwoArrays.firstVector.ToArray(), relateTwoArrays.secondVector.ToArray());
-            gradientDescent.calculateGradientDescent(0.0001f,350);
+            gradientDescent.calculateGradientDescent(0.0001f,350,1000);
             var result = gradientDescent.result;
             using(StreamWriter writer = new StreamWriter(resultPath))
             {

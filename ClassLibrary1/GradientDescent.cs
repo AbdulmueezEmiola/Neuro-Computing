@@ -19,7 +19,7 @@ namespace ClassLibrary1
             functions = new Functions(pointsA, pointsB);
             result = new List<Tuple<double, Variables>>();
         }
-        public void calculateGradientDescent(double step, double distanceToCheck)
+        public void calculateGradientDescent(double step, double distanceToCheck, double count)
         {
             Variables initial = new Variables()
             {
@@ -30,7 +30,6 @@ namespace ClassLibrary1
                 deltaY = 0,
                 deltaZ = 0
             };
-            double count = 100000;
             double valueCheck = 0;
             for(int i = 0; i < count; i++)
             {
