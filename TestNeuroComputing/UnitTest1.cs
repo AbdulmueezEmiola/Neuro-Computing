@@ -56,5 +56,14 @@ namespace TestNeuroComputing
                 }
             }
         }
+        [TestMethod]
+        public void TestTransformPointsWithString()
+        {
+            var values = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile1.txt");
+            var fileName =  @"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\ResultTransform.txt";
+            string variables = "(-6.2885988031575; 12.460789807627599; 18.89248777613829; 37.120601271727345; -0.20593180312635412; 13.164690430237883)";
+            TransformPoint.WriteTransformPointToFile(values.ToList(), variables, fileName);
+        }
+            
     }
 }

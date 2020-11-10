@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace ClassLibrary1
 {
     public struct Variables
@@ -13,6 +13,16 @@ namespace ClassLibrary1
         public double deltaY { get; set; }
         public double deltaZ { get; set; }
 
+        public Variables(string variablesAsString)
+        {
+            var variables = variablesAsString.Remove(0,1).Remove(variablesAsString.Length-2).Split(';');
+            alpha = double.Parse(variables[0]);
+            beta = double.Parse(variables[1]);
+            gamma = double.Parse(variables[2]);
+            deltaX = double.Parse(variables[3]);
+            deltaY = double.Parse(variables[4]);
+            deltaZ = double.Parse(variables[5]);
+        }
         public static Variables operator *(double multiply, Variables variables)
         {
             return new Variables

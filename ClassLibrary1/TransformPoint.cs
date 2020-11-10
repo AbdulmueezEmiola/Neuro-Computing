@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Numerics;
 namespace ClassLibrary1
 {
@@ -28,6 +30,21 @@ namespace ClassLibrary1
                 (float) M32, (float)M33, (float)M34, (float)M41, (float)M42,(float) M43, (float)M44);
             return Vector4.Transform(new Vector4(vector,1), Matrix4x4.Transpose(matrix));
 
+        }
+        public static void WriteTransformPointToFile(List<Tuple<string, Vector3>> tuple, string variablesAsString, string fileName)
+        {
+            var vectors = tuple.Select(x => x.Item2).ToArray();
+            Variables variables = new Variables(variablesAsString);
+            var results = transformPoints(vectors, (float)variables.alpha, (float)variables.beta, (float)variables.gamma, (float)variables.deltaX, (float)variables.deltaY, (float)variables.deltaZ);
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                int i = 0;
+                foreach(var result in results)
+                {
+                    string value = (++i) + ". (" + result.X + ", " + result.Y + ", " + result.Z + ")";
+                    writer.WriteLine(value);
+                }
+            }
         }
         public static IEnumerable<Vector3> transformPoints(Vector3[] vectors,float alpha, float beta, float gamma, float deltaX, float deltaY, float deltaZ)
         {
