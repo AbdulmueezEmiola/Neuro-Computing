@@ -33,6 +33,7 @@ namespace ClassLibrary1
         }
         public static void WriteTransformPointToFile(List<Tuple<string, Vector3>> tuple, string variablesAsString, string fileName)
         {
+            var names = tuple.Select(x => x.Item1).ToArray();
             var vectors = tuple.Select(x => x.Item2).ToArray();
             Variables variables = new Variables(variablesAsString);
             var results = transformPoints(vectors, (float)variables.alpha, (float)variables.beta, (float)variables.gamma, (float)variables.deltaX, (float)variables.deltaY, (float)variables.deltaZ);
@@ -41,7 +42,7 @@ namespace ClassLibrary1
                 int i = 0;
                 foreach(var result in results)
                 {
-                    string value = (++i) + ". (" + result.X + ", " + result.Y + ", " + result.Z + ")";
+                    string value = (i+1) + "."+ names[i++]+"(" + result.X + ", " + result.Y + ", " + result.Z + ")";
                     writer.WriteLine(value);
                 }
             }
