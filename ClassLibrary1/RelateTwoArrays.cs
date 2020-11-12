@@ -37,6 +37,7 @@ namespace ClassLibrary1
                 double temp = Vector3.Distance(vector, vector2);
                 if(temp < minimumDistance)
                 {
+                    minimumDistance = temp;
                     returnValue = vector2;
                 }
             }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary1", "ClassLibra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestNeuroComputing", "TestNeuroComputing\TestNeuroComputing.csproj", "{C47AEF26-364A-43BD-854A-6595985CD62C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task1Forms", "..\..\..\..\Downloads\Task1Forms-master\Task1Forms-master\Task1Forms.csproj", "{12F118CC-1FA0-4C4D-838C-D41D6639BD48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task1Forms", "..\..\..\..\source\repos\Task1FormsIsaev\Task1Forms.csproj", "{0E961031-4DA2-4B86-96AB-54EF9D702E51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{C47AEF26-364A-43BD-854A-6595985CD62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C47AEF26-364A-43BD-854A-6595985CD62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C47AEF26-364A-43BD-854A-6595985CD62C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12F118CC-1FA0-4C4D-838C-D41D6639BD48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12F118CC-1FA0-4C4D-838C-D41D6639BD48}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12F118CC-1FA0-4C4D-838C-D41D6639BD48}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12F118CC-1FA0-4C4D-838C-D41D6639BD48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E961031-4DA2-4B86-96AB-54EF9D702E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E961031-4DA2-4B86-96AB-54EF9D702E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E961031-4DA2-4B86-96AB-54EF9D702E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E961031-4DA2-4B86-96AB-54EF9D702E51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,13 +37,13 @@ namespace TestNeuroComputing
         [TestMethod]
         public void MainFunctionToRun()
         {
-            var values = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile1.txt");
-            var values2 = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile2.txt");
+            var values2 = FileToArray.Converter(@"C:\Users\emiol\Downloads\TestPir.txt");
+            var values = FileToArray.Converter(@"C:\Users\emiol\Downloads\TestPir2.txt");
             var resultPath = @"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\Result.txt";
             RelateTwoArrays relateTwoArrays = new RelateTwoArrays();
             relateTwoArrays.RelateTwoTuples(values.ToList(), values2.ToList());
             GradientDescent gradientDescent = new GradientDescent(relateTwoArrays.firstVector.ToArray(), relateTwoArrays.secondVector.ToArray());
-            gradientDescent.calculateGradientDescent(0.0001f,350,1000);
+            gradientDescent.calculateGradientDescent(0.0000001f,300,100000);
             var result = gradientDescent.result;
             using(StreamWriter writer = new StreamWriter(resultPath))
             {
@@ -56,10 +56,10 @@ namespace TestNeuroComputing
                 }
             }
         }
-        [TestMethod]
+        [   TestMethod]
         public void TestTransformPointsWithString()
         {
-            var values = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile1.txt");
+            var values = FileToArray.Converter(@"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\TextFile2.txt");
             var fileName =  @"C:\Users\emiol\Desktop\2nd year Assignment\Neuro Computing\Neuro Computing\TestNeuroComputing\ResultTransform.txt";
             string variables = "(-6.2885988031575; 12.460789807627599; 18.89248777613829; 37.120601271727345; -0.20593180312635412; 13.164690430237883)";
             TransformPoint.WriteTransformPointToFile(values.ToList(), variables, fileName);
